@@ -12,4 +12,5 @@ ENV FLASK_APP=app/app.py
 
 VOLUME ["/opt/code"]
 
-CMD ["flask", "run", "--host=0.0.0.0"]
+#CMD ["flask", "run", "--host=0.0.0.0"]
+CMD flask command init-db && flask run --host=0.0.0.0

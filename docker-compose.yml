@@ -6,4 +6,25 @@ services:
     volumes:
       - .:/opt/code
     ports:
-    - "5000:5000"
+      - "5000:5000"
+    environment:
+      - FLASK_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://centralnicgroup:centralnicgroup@postgres/centralnicgroup
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    image: "postgres:14"
+    environment:
+      - PGDATA=/pgdata
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - centralnicgroup:/pgdata
+      - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  centralnicgroup:
