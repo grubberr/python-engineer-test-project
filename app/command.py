@@ -37,6 +37,12 @@ def init_db():
             password="password",
             company=company2,
         )
-        team3 = Team(name="DevOps", members=[user4], company=company2)
+        user5 = User(
+            name="Harry Potter",
+            email="harry.potter@domain.com",
+            password="password",
+            company=company2,
+        )
+        team3 = Team(name="DevOps", members=[user4, user5], company=company2)
         db.session.add_all([team1, team2, team3])
         db.session.commit()

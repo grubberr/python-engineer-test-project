@@ -23,12 +23,12 @@ class UserSchema(Schema):
 class TeamSchema(Schema):
     id = Integer(required=True)
     name = String(required=True)
-    members = List(Nested(UserSchema), required=True, validate=Length(min=1))
+    members = List(Nested(UserSchema), required=True, validate=Length(min=2))
 
 
 class TeamNew(Schema):
     name = String(required=True)
-    members = List(Integer(), required=True, validate=Length(min=1))
+    members = List(Integer(), required=True, validate=Length(min=2))
 
 
 class TeamsResponse(Schema):
