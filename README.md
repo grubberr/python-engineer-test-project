@@ -67,8 +67,8 @@ We've include a simple Dockerfile and basic flask app.py for you to start adding
 
 assuming you have docker set up and runing you can simple do the following to get started.
 
-`docker-compose build app`
+`docker compose build app`
 
-`docker-compose run --service-ports app`
+`docker compose run --service-ports app`
 
 Now hit localhost:5000 in your browser and you should see a 404 template.

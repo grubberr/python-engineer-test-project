@@ -35,8 +35,8 @@ def verify_token(token: str):
 @login_api.input(LoginIn)
 def login(data):
     user = db.session.query(User).filter(User.email == data["email"]).first()
-    if not user:
-        abort(404)
+    if not (user and user.check_password(data["password"])):
+        abort(403)
     payload = {"email": user.email}
     token = jwt.encode(payload, current_app.config["SECRET_KEY"], algorithm="HS256")
     return {"token": token}
