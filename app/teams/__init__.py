@@ -4,6 +4,7 @@ from apiflask.validators import Length
 from sqlalchemy.exc import IntegrityError
 
 from app.model import Company, Team, User, db
+from app.teams.auth import auth
 
 api = APIBlueprint("api", __name__)
 
@@ -43,6 +44,7 @@ class TeamsRequest(Schema):
 
 
 @api.get("/teams")
+@api.auth_required(auth)
 @api.input(TeamsRequest, location="query")
 @api.output(TeamsResponse)
 def get_teams(data):
@@ -54,6 +56,7 @@ def get_teams(data):
 
 
 @api.get("/team/<int:team_id>")
+@api.auth_required(auth)
 @api.output(TeamResponse)
 def get_team(team_id):
     team = db.session.query(Team).get(team_id)
@@ -63,6 +66,7 @@ def get_team(team_id):
 
 
 @api.post("/team")
+@api.auth_required(auth)
 @api.input(TeamNew)
 def create_team(data):
     user_ids = set()

@@ -9,6 +9,7 @@ services:
       - "5000:5000"
     environment:
       - FLASK_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://centralnicgroup:centralnicgroup@postgres/centralnicgroup
+      - FLASK_SECRET_KEY=d90f9df0d56adc2b058b89585d5cb38306864b7e6988fb46
     depends_on:
       postgres:
         condition: service_healthy

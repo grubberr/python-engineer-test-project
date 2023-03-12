@@ -18,7 +18,8 @@ dependencies = [
     "flask-sqlalchemy>=3.0.3",
     "flask>=2.2.3",
     "psycopg2>=2.9.5",
-    "APIFlask>=1.2.3"
+    "APIFlask>=1.2.3",
+    "PyJWT>=2.6.0"
 ]
 dynamic = ["version"]
 

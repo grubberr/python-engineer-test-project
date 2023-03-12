@@ -21,12 +21,13 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"), nullable=False)
 
 
 class Team(db.Model):
     __table_args__ = (
-        db.UniqueConstraint('name', 'company_id'),
+        db.UniqueConstraint("name", "company_id"),
     )
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
