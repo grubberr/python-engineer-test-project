@@ -95,4 +95,6 @@ To view teams for a specific company, you need to provide an additional optional
 
 To create a new team:
 
-`curl -XPOST -H 'Content-Type: application/json' -H "Authorization: Bearer $TOKEN" -d '{"name":"Programmers", "members":[1,2,3]}' http://localhost:5000/team`
+```
+curl -XPOST -H 'Content-Type: application/json' -H "Authorization: Bearer $TOKEN" -d '{"name":"Programmers", "members":[1,2,3]}' http://localhost:5000/team
+```
