@@ -71,4 +71,23 @@ assuming you have docker set up and runing you can simple do the following to ge
 
 `docker compose run --service-ports app`
 
-Now hit localhost:5000 in your browser and you should see a 404 template.
+After you have started the application you can run HTTP queries with help of `curl` to test the microservice.
+
+To get the JWT token run the following:
+```
+export TOKEN=`curl -s -XPOST -H 'Content-Type: application/json' -d '{"email":"tory.smith@domain.com", "password":"password"}' http://localhost:5000/login | jq -r .token`
+```
+
+After receiving the JWT token you can run the main API HTTP requests.
+
+To view a list of all the teams:
+`curl -H "Authorization: Bearer $TOKEN" http://localhost:5000/teams`
+
+To view a specific team by id:
+`curl -H "Authorization: Bearer $TOKEN" http://localhost:5000/team/1`
+
+To view teams for a specific company, you need to provide an additional optional query string parameter "company":
+`curl -H "Authorization: Bearer $TOKEN" http://localhost:5000/teams?company=GoDaddy`
+
+To create a new team:
+`curl -XPOST -H 'Content-Type: application/json' -H "Authorization: Bearer $TOKEN" -d '{"name":"Programmers", "members":[1,2,3]}' http://localhost:5000/team`
